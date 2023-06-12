@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>메인 페이지</title>
+    <link href="/css/default.css" rel="stylesheet">
+</head>
+<body>
+<div id="container">
+    <h1>메인 페이지</h1>
+    <th:block th:unless="${session.loginMember}">
+        <input onclick="location.href='member/join'" type="button" value="회원가입">
+        <input onclick="location.href='member/login'" type="button" value="로그인">
+    </th:block>
+    <th:block th:if="${session.loginMember}">
+        <div>[[${session.loginMember.name}]]님 환영합니다.</div>
+        <input onclick="location.href='member/logout'" type="button" value="로그아웃">
+        <input onclick="location.href='product/products'" type="button" value="상품목록">
+        <input onclick="location.href='order/myOrders'" type="button" value="주문내역">
+    </th:block>
+</div>
+</body>
+</html>

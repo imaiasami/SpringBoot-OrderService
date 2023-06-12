@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.order.repository.OrderRepository">
+    <!--  상품 주문하기  -->
+    <insert id="saveOrder">
+        <selectKey keyProperty="order_id" resultType="long" order="BEFORE">
+            select seq_order.nextval from dual
+        </selectKey>
+        insert into orders(
+            order_id,
+            member_id,
+            product_id,
+            count,
+            order_price
+        ) values (
+            #{order_id},
+            #{member_id},
+            #{product_id},
+            #{count},
+            #{order_price}
+        )
+    </insert>
+
+    <!--  전체 주문내역 확인  -->
+    <select id="findOrdersByMemberId" resultType="order">
+        select * from orders where member_id = #{member_id} order by order_date desc
+    </select>
+
+    <!--  주문 상세내역  -->
+    <select id="findOrderById" resultType="order">
+        select * from orders where order_id = #{order_id}
+    </select>
+
+    <!--  주문 취소하기  -->
+    <delete id="removeOrderById">
+        delete from orders where order_id = #{order_id}
+    </delete>
+</mapper>

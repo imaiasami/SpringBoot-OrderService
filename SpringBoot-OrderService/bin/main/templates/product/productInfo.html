@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>상품 상세정보</title>
+    <link rel="stylesheet" href="/css/default.css">
+</head>
+<body>
+<div id="container">
+    <h1>상품 상세페이지</h1>
+    <form action="/order/orderProduct" method="post" th:object="${orderProductForm}">
+        <table>
+            <tr>
+                <th>매뉴명</th>
+                <td th:text="*{name}"></td>
+            </tr>
+            <tr>
+                <th>가격</th>
+                <td th:text="|*{price}원|"></td>
+            </tr>
+            <tr>
+                <th>재고</th>
+                <td th:text="*{stock}"></td>
+            </tr>
+        </table>
+        <p>
+        <input type="hidden" th:field="*{product_id}">
+        <label for="count">주문수량: </label>
+        <input type="number" th:field="*{count}">
+        <input type="submit" value="주문하기">
+        <span th:errorClass="error" th:errors="*{count}"></span>
+        <p>
+        <div class="center">
+            <input type="button" onclick="location.href='/'" value="메인으로">
+            <input type="button" onclick="location.href='/product/products'" value="목록으로">
+        </div>
+    </form>
+</div>
+</body>
+</html>

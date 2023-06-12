@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>5xx Error Page</title>
+    <link rel="stylesheet" href="/css/default.css">
+</head>
+<body>
+<div id="container">
+    <h1>서버 처리 중 에러가 발생 했습니다.</h1>
+    <a href="/">메인으로</a>
+    <h3>에러 정보</h3>
+    <ul>
+        <li>timestamp: [[${timestamp}]]</li>
+        <li>path: [[${path}]]</li>
+        <li>status: [[${status}]]</li>
+        <li>message: [[${message}]]</li>
+        <li>error: [[${error}]]</li>
+        <li>exception: [[${exception}]]</li>
+        <li>trace: [[${trace}]]</li>
+    </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>주문정보 확인</title>
+    <link rel="stylesheet" href="/css/default.css">
+</head>
+<body>
+<div id="container">
+    <h1>주문정보 확인</h1>
+    <table th:object="${myOrderDTO}">
+        <tr>
+            <th>주문 아이디</th>
+            <td th:text="*{order.order_id}"></td>
+        </tr>
+        <tr>
+            <th>상품명</th>
+            <td th:text="*{product.name}"></td>
+        </tr>
+        <tr>
+            <th>주문 수량</th>
+            <td th:text="*{order.count}"></td>
+        </tr>
+        <tr>
+            <th>가격</th>
+            <td th:text="|*{order.order_price}원|"></td>
+        </tr>
+        <tr>
+            <th>주문일</th>
+            <td th:text="*{order.order_date}"></td>
+        </tr>
+    </table>
+    <p>
+    <div class="center">
+        <input type="button" onclick="location.href='/product/products'" value="목록으로">
+        <input type="button" th:onclick="|location.href='@{/order/withdrawOrder(order_id=${myOrderDTO.order.order_id})}'|" value="주문취소">
+    </div>
+</div>
+</body>
+</html>

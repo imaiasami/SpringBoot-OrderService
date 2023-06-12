@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>내 주문내역</title>
+    <link rel="stylesheet" href="/css/default.css">
+</head>
+<body>
+<div id="container">
+  <h1>내 주문내역</h1>
+  <table>
+    <tr>
+      <th>No</th>
+      <th>상품명</th>
+      <th>수량</th>
+      <th>가격</th>
+      <th>주문일</th>
+    </tr>
+    <tr th:if="${myOrderDTOs.size() > 0}" th:each="myOrderDTO : ${myOrderDTOs}">
+      <td class="center" th:text="${myOrderDTOStat.count}"></td>
+      <td class="center"><a th:href="@{/order/orderInfo(order_id=${myOrderDTO.order.order_id})}" th:text="${myOrderDTO.product.name}"></a></td>
+      <td class="center" th:text="${myOrderDTO.order.count}"></td>
+      <td class="center" th:text="${myOrderDTO.order.order_price}"></td>
+      <td class="center" th:text="${myOrderDTO.order.order_date}"></td>
+    </tr>
+    <tr th:unless="${myOrderDTOs.size() > 0}">
+      <td class="center" colspan="5">주문 내역이 없습니다.</td>
+    </tr>
+  </table>
+  <p>
+  <div class="center">
+    <input type="button" onclick="location.href='/'" value="메인으로">
+    <input type="button" onclick="location.href='/product/products'" value="상품목록">
+  </div>
+</div>
+</body>
+</html>
